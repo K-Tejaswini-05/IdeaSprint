@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLink - Delivery Tracking</title>
+<!-- Google Fonts: Plus Jakarta Sans & Be Vietnam Pro -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#88d982",
+              "on-secondary": "#ffffff",
+              "error": "#ba1a1a",
+              "secondary-fixed": "#ffddba",
+              "on-surface": "#181d17",
+              "on-background": "#181d17",
+              "on-tertiary-fixed-variant": "#603f33",
+              "on-secondary-container": "#623a00",
+              "on-primary-fixed": "#002204",
+              "tertiary-fixed-dim": "#ebbcac",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#ffb865",
+              "secondary": "#875200",
+              "tertiary-container": "#8b6557",
+              "primary-fixed": "#a3f69c",
+              "surface-container-low": "#f1f5eb",
+              "surface-tint": "#1b6d24",
+              "inverse-on-surface": "#eef2e8",
+              "on-secondary-fixed": "#2b1700",
+              "background": "#f7fbf0",
+              "tertiary-fixed": "#ffdbcf",
+              "on-surface-variant": "#40493d",
+              "outline-variant": "#bfcaba",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e0e4da",
+              "on-error": "#ffffff",
+              "surface-container": "#ebefe5",
+              "surface": "#f7fbf0",
+              "on-primary-container": "#cbffc2",
+              "surface-dim": "#d7dbd2",
+              "on-primary-fixed-variant": "#005312",
+              "inverse-surface": "#2d322b",
+              "error-container": "#ffdad6",
+              "outline": "#707a6c",
+              "surface-bright": "#f7fbf0",
+              "primary-fixed-dim": "#88d982",
+              "secondary-container": "#f89c00",
+              "primary-container": "#2e7d32",
+              "tertiary": "#704d40",
+              "on-secondary-fixed-variant": "#663d00",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e5eadf",
+              "on-tertiary-container": "#ffeee8",
+              "on-tertiary-fixed": "#2e150b",
+              "primary": "#0d631b",
+              "surface-container-highest": "#e0e4da",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+      }
+      body {
+        font-family: 'Be Vietnam Pro', sans-serif;
+      }
+      h1, h2, h3 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar Fragment -->
+<header class="fixed top-0 w-full z-50 bg-emerald-50/80 dark:bg-emerald-950/80 backdrop-blur-lg shadow-sm dark:shadow-none flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a friendly volunteer man with a warm smile, outdoor urban park setting, soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9IXAhAvb_Vm1QFS6nXoIaUbNVQdvrXYw-hSRfBfS8lvHuq2rTGsYUdJTIJYne--bU4IvQIrDhD-E8Ju_kF1O2HBIlPxklyx4H8aFdylFXwn75Ns0INYrzvzh1DIdUcqcl5gn67rS5qZhib_v7voAEgFTDX8Tn9HnKccoqPtOE0uNFkyZbfWjUEGOd2bFV9CVsyaEA_NcH1LDhZBWlL6P8l_qFOejh7iLaL06Y--9y4TMfL6D5tO31bzPyE4KO5al_RGw6la7-Ta0"/>
+</div>
+<span class="text-2xl font-black text-emerald-900 dark:text-emerald-50 italic tracking-tight font-headline">FoodLink</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-emerald-900 dark:text-emerald-100 hover:bg-emerald-100/50 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Map Background -->
+<main class="relative flex-grow w-full h-full pt-16">
+<!-- Map Visualization -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Detailed city street map with a highlighted green route path connecting two points, minimalist aesthetic with soft organic colors" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo4tQUOTksMFS3WkMfc_ScfgCVkqrBBtgZRoHqazvz445k4aGAzmQyjS-esWK_a4VR5SXl53SICJ1irwiMfu_3kwSpz7R46LylGw2EyO7AZayIfahtKqGl6tr_ZXQcEbhRI4DaFftbK7ksbsNuR3_wjdT39NHIAcWaWTxtfRMi6Se_nItZs_BmDr1ISwQkF-oXTVoK3pZKK7u2rz9mVs322yEzYsWU9JsC6wS0T5QBZVt82JKbeK1Os5P9kZ1_Xshpw0dOOu1Vfl0"/>
+<!-- Route Overlay Simulated -->
+<div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+<!-- Map Markers -->
+<div class="absolute top-[30%] left-[40%] transform -translate-x-1/2 -translate-y-1/2">
+<div class="flex flex-col items-center">
+<div class="bg-secondary p-2 rounded-full shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div class="mt-1 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-lg shadow-sm text-[10px] font-bold uppercase tracking-wider text-secondary">Donor</div>
+</div>
+</div>
+<div class="absolute bottom-[45%] right-[25%] transform -translate-x-1/2 -translate-y-1/2">
+<div class="flex flex-col items-center">
+<div class="bg-primary p-2 rounded-full shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div class="mt-1 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-lg shadow-sm text-[10px] font-bold uppercase tracking-wider text-primary">Volunteer</div>
+</div>
+</div>
+</div>
+<!-- Floating Status Indicator -->
+<div class="absolute top-6 left-6 right-6 z-10">
+<div class="glass-card rounded-xl p-4 flex items-center justify-between shadow-sm border border-outline-variant/15">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Live Status</p>
+<p class="text-sm font-semibold text-primary">Heading to Community Center</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Arrival</p>
+<p class="text-sm font-semibold text-on-surface">8 mins</p>
+</div>
+</div>
+</div>
+<!-- Message Donor EFAB (Material 3 Pattern) -->
+<div class="absolute bottom-[28rem] right-6 z-30">
+<button class="flex items-center gap-3 px-6 py-4 bg-tertiary-container text-on-tertiary-container rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all group border border-outline-variant/20">
+<span class="material-symbols-outlined transition-transform group-hover:scale-110">chat</span>
+<span class="font-label text-sm font-bold tracking-wider uppercase">Message Donor</span>
+</button>
+</div>
+<!-- Bottom Sheet Fragment -->
+<div class="absolute bottom-20 left-0 right-0 z-20 px-4 pb-4">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_-8px_24px_rgba(0,0,0,0.06)] p-6 flex flex-col gap-6">
+<!-- Drag Handle -->
+<div class="w-12 h-1 bg-outline-variant/30 rounded-full self-center -mt-2 mb-2"></div>
+<!-- Donor Info -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling mature chef in a white apron standing in front of a rustic kitchen background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIOUchEVEkyLINmLIk3c-E38_gDkIdVJbdrxmkJajRMq9muLOKBVH-XIfj3KRydPmdSdkNCJOYx26LXgw0wTTSRODeJrWWrSgxVw1aHu2qc6FTGItzDYKAwb_pTTa0xfPphJpNVEEDJh2y7E_OIyV9s-hqcu1TLH_-xkOgScqbhhnLCDYEsGUNzGuD2aa0Vj1cj574mB-kb4pfTxOM5wKFnKzc5BgOpgy777npRlfGyPg5Tq8zNlmqnRoudLeKlri4j58rgJ32nuM"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-on-surface">Marco's Artisan Deli</h3>
+<p class="text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">star</span> 4.9 • Verified Donor
+                            </p>
+</div>
+</div>
+<button class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</button>
+</div>
+<!-- Pickup Details Section -->
+<div class="bg-surface-container-low rounded-lg p-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<p class="text-[11px] font-bold text-secondary uppercase tracking-widest">Pickup Details</p>
+<p class="text-on-surface font-medium leading-tight">412 Market St, Suite 100<br/>San Francisco, CA 94102</p>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold hover:bg-outline-variant/20 transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                            Copy Address
+                        </button>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<p class="text-sm text-on-surface-variant">24x Fresh Sourdough Loaves, 10kg Produce</p>
+</div>
+</div>
+<!-- Swipe to Complete Slider -->
+<div class="relative w-full h-16 bg-surface-container-highest rounded-full p-1.5 flex items-center group overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="text-sm font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Swipe to complete delivery</span>
+</div>
+<!-- The Slider Handle -->
+<div class="h-full aspect-square bg-primary rounded-full flex items-center justify-center text-on-primary shadow-lg z-10 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+</div>
+<!-- Progress Fill (Animated in real app) -->
+<div class="absolute left-1.5 top-1.5 bottom-1.5 w-16 bg-primary/20 rounded-full pointer-events-none"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Fragment -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl flex justify-around items-center px-8 pb-4 z-50 rounded-t-[3rem] shadow-[0_-8px_24px_rgba(0,0,0,0.06)]">
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 opacity-70 hover:opacity-100 transition-all active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined" data-icon="home_pin">home_pin</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-semibold tracking-wide uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 opacity-70 hover:opacity-100 transition-all active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-semibold tracking-wide uppercase mt-1">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-emerald-100 dark:bg-emerald-900/40 text-emerald-900 dark:text-emerald-50 rounded-full px-5 py-2 transition-all active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-semibold tracking-wide uppercase mt-1">Tracking</span>
+</a>
+</nav>
+<!-- Navigation Bar Padding to prevent overlap with bottom content -->
+<div class="h-20 shrink-0"></div>
+</body></html>
